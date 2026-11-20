@@ -8,12 +8,7 @@ $ErrorActionPreference = 'Stop'
 # ==========================================================
 # CONFIGURACIÓN
 # ==========================================================
-# ==========================================================
-# CONFIGURACIÓN DESDE .ENV
-# ==========================================================
-
-$EnvFile = Join-Path $PSScriptRoot '.env'
-
+$EnvFile = Join-Path $env:TEMP 'SkanHawkGLPI\.env'
 if (-not (Test-Path $EnvFile)) {
     throw "No se encontró el archivo de configuración: $EnvFile"
 }
@@ -39,6 +34,9 @@ Get-Content $EnvFile | ForEach-Object {
         )
     }
 }
+try {
+    Remove-Item -LiteralPath $EnvFile -Force -ErrorAction SilentlyContinue
+} catch {}
 
 # Conexión GLPI
 $Servidor = $env:GLPI_SERVER

@@ -17,3 +17,6 @@ output/
 # Archivos de Windows
 Thumbs.db
 Desktop.ini
+# Ejecutable y copias de seguridad
+Instalador-GLPI-SkanHawk.exe
+*.backup
